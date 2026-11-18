@@ -1,0 +1,248 @@
+{
+  "id": "monster",
+  "version": "1.0.0",
+  "position": 2,
+  "title": "Monster",
+  "subtitle": "Maxluqlar kattaligi bo'yicha tizilib, reyting chiqadi",
+  "badge": "Yangi",
+  "tier": "free",
+  "accent": "#ff4d5e",
+  "cover": "monster",
+  "silent": true,
+  "dataPath": "maxluqlar",
+  "sort": {
+    "key": "balandlik",
+    "dir": "asc",
+    "label": "kichikdan kattaga"
+  },
+  "topics": [
+    {
+      "group": "Dengiz maxluqlari",
+      "items": [
+        "Chuqur dengiz maxluqlari",
+        "Afsonaviy dengiz maxluqlari",
+        "Eng katta dengiz jonivorlari"
+      ]
+    },
+    {
+      "group": "Hasharotlar",
+      "items": [
+        "Eng katta hasharotlar (real va gigant)",
+        "Gigant o'rgimchaklar",
+        "Kosmik hasharotlar"
+      ]
+    },
+    {
+      "group": "Monsterlar",
+      "items": [
+        "Original qo'rqinchli monsterlar",
+        "Mifologik maxluqlar",
+        "Yer osti monsterlari"
+      ]
+    },
+    {
+      "group": "Hayvonlar va dinozavrlar",
+      "items": [
+        "Dinozavrlar kattaligi",
+        "Tarixdan oldingi hayvonlar",
+        "Gigant hayvonlar"
+      ]
+    }
+  ],
+  "options": [
+    {
+      "id": "uslub",
+      "label": "Rasm uslubi",
+      "type": "choice",
+      "default": "siluet",
+      "choices": [
+        {
+          "id": "siluet",
+          "label": "Qora siluet (tez va oson)",
+          "vars": {
+            "look": "pure black silhouette with glowing red eyes only, no inner details"
+          }
+        },
+        {
+          "id": "rangli",
+          "label": "Rangli, tafsilotli",
+          "vars": {
+            "look": "detailed full-color creature, dark horror atmosphere, sharp details"
+          }
+        }
+      ]
+    },
+    {
+      "id": "original",
+      "label": "Faqat original / umumiy maxluqlar (mualliflik xavfisiz)",
+      "type": "toggle",
+      "default": true
+    }
+  ],
+  "plan": {
+    "long": {
+      "secondsPerItem": 8,
+      "introSeconds": 8,
+      "outroSeconds": 6,
+      "minItems": 6,
+      "maxItems": 60,
+      "itemName": "maxluq"
+    }
+  },
+  "durations": {
+    "long": {
+      "choices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        8,
+        10
+      ],
+      "default": 4
+    }
+  },
+  "schema": {
+    "type": "object",
+    "required": [
+      "sarlavha",
+      "tavsif",
+      "maxluqlar"
+    ],
+    "properties": {
+      "sarlavha": {
+        "type": "string",
+        "minLength": 5,
+        "maxLength": 100
+      },
+      "tavsif": {
+        "type": "string"
+      },
+      "teglar": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "maxluqlar": {
+        "type": "array",
+        "planCount": "items",
+        "tolerance": 0.1,
+        "items": {
+          "type": "object",
+          "required": [
+            "nom",
+            "english",
+            "balandlik"
+          ],
+          "properties": {
+            "nom": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string",
+              "minLength": 8
+            },
+            "balandlik": {
+              "type": "number",
+              "minimum": 0.0001
+            },
+            "tur": {
+              "type": "string",
+              "transform": "lower",
+              "enum": [
+                "real",
+                "fiction",
+                "mythical"
+              ]
+            },
+            "izoh": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "example": {
+    "sarlavha": "Maxluqlar kattaligi: eng kichigidan eng kattasigacha",
+    "tavsif": "Kichik jonivorlardan koinot kattaligidagi maxluqlargacha, kattaligi bo'yicha solishtiramiz.",
+    "teglar": [
+      "monster",
+      "size comparison",
+      "kattalik"
+    ],
+    "maxluqlar": [
+      {
+        "nom": "Soya o'rgimchak",
+        "english": "a giant spider creature standing on long thin legs, front view, menacing",
+        "balandlik": 3.5,
+        "tur": "fiction",
+        "izoh": "Original maxluq, taxminiy balandligi 3.5 metr"
+      },
+      {
+        "nom": "Tuman gigant",
+        "english": "a towering humanoid creature made of fog with long arms, front view",
+        "balandlik": 120,
+        "tur": "fiction",
+        "izoh": "Original maxluq"
+      }
+    ]
+  },
+  "table": {
+    "title": "Maxluqlar",
+    "columns": [
+      {
+        "key": "nom",
+        "label": "Nomi",
+        "type": "text",
+        "edit": true
+      },
+      {
+        "key": "balandlik",
+        "label": "Balandligi (metr)",
+        "type": "number",
+        "edit": true
+      },
+      {
+        "key": "tur",
+        "label": "Turi",
+        "type": "select",
+        "edit": true,
+        "options": [
+          "real",
+          "fiction",
+          "mythical"
+        ]
+      },
+      {
+        "key": "english",
+        "label": "Rasm tavsifi (EN)",
+        "type": "text",
+        "edit": true,
+        "wide": true
+      },
+      {
+        "key": "izoh",
+        "label": "Izoh",
+        "type": "text",
+        "edit": true,
+        "wide": true
+      }
+    ]
+  },
+  "images": {
+    "group": 1,
+    "variants": [
+      {
+        "id": "creature",
+        "label": "Maxluq rasmi",
+        "template": "{{english}}. Full body visible, standing in a neutral pose, side or front view, centered, feet at the bottom of the frame, {{opt.uslub.look}}. Solid pure chroma green background (#00FF00), perfectly flat, uniform, no shadows, no ground, no gradients, no text, no watermark."
+      }
+    ],
+    "hint": "Maxluqlar toza yashil fonda (#00FF00) bo'lishi kerak. Dastur keyin yashil rangni shaffof qiladi."
+  },
+  "voice": null,
+  "computed": null
+}

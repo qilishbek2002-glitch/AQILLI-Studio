@@ -1,0 +1,10 @@
+{
+  "appId": "uz.aqilli.studio",
+  "appName": "Aqilli Studio",
+  "webDir": "www",
+  "backgroundColor": "#11142b",
+  "android": { "allowMixedContent": false },
+  "plugins": {
+    "StatusBar": { "style": "DARK", "backgroundColor": "#11142b", "overlaysWebView": false }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "aqilli-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bundle": "node tools/bundle.mjs",
+    "serve": "node tools/serve.mjs",
+    "test": "node --test tests/core.test.mjs",
+    "build:web": "node tools/build-web.mjs",
+    "android:sync": "npm run build:web && npx cap sync android",
+    "win:build": "npm run build:web && electron-builder --win portable"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/cli": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/filesystem": "^8.0.0",
+    "@capacitor/share": "^8.0.0",
+    "@capacitor/status-bar": "^8.0.0"
+  },
+  "main": "electron/main.cjs",
+  "description": "Aqilli Studio",
+  "author": "Aqilli Studio",
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "uz.aqilli.studio",
+    "productName": "Aqilli Studio",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**",
+      "www/**",
+      "package.json"
+    ],
+    "win": {
+      "target": "portable",
+      "icon": "electron/icon.png"
+    },
+    "artifactName": "Aqilli-Studio-${version}.${ext}"
+  }
+}
