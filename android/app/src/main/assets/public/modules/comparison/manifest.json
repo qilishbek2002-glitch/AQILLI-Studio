@@ -1,0 +1,349 @@
+{
+  "id": "comparison",
+  "version": "1.0.0",
+  "position": 1,
+  "title": "Comparison",
+  "subtitle": "Hayvonlar, telefonlar, mashinalar, davlatlar: raqamlar bo'yicha solishtirish",
+  "badge": "Yangi",
+  "tier": "free",
+  "accent": "#22d3ee",
+  "cover": "comparison",
+  "silent": true,
+  "dataPath": "obyektlar",
+  "sort": {
+    "key": "qiymat",
+    "dir": "asc",
+    "label": "kichikdan kattaga"
+  },
+  "topics": [
+    {
+      "group": "Hayvonlar",
+      "items": [
+        "Eng tez hayvonlar",
+        "Eng og'ir hayvonlar",
+        "Eng uzoq yashaydigan hayvonlar",
+        "Eng kuchli tishlash kuchi",
+        "Eng baland sakraydigan hayvonlar"
+      ]
+    },
+    {
+      "group": "Telefonlar",
+      "items": [
+        "Eng ko'p sotilgan telefon brendlari",
+        "Eng qimmat telefonlar",
+        "Eng katta batareyali telefonlar",
+        "Eng yaxshi kamerali telefonlar"
+      ]
+    },
+    {
+      "group": "Mashinalar",
+      "items": [
+        "Eng tez mashinalar",
+        "Eng qimmat mashinalar",
+        "Eng ko'p sotilgan mashinalar",
+        "Yoqilg'i sarfi eng kam mashinalar"
+      ]
+    },
+    {
+      "group": "Davlatlar",
+      "items": [
+        "Maydoni bo'yicha davlatlar",
+        "Aholisi bo'yicha davlatlar",
+        "Eng baland binolari bor davlatlar",
+        "Eng boy davlatlar (YaIM)"
+      ]
+    },
+    {
+      "group": "Texnologiyalar",
+      "items": [
+        "Eng qimmat texnologiya kompaniyalari",
+        "Eng kuchli protsessorlar",
+        "Eng tez internetli davlatlar",
+        "Eng ko'p foydalanuvchili ilovalar"
+      ]
+    }
+  ],
+  "options": [
+    {
+      "id": "shablon",
+      "label": "Shablon",
+      "type": "choice",
+      "default": "cards",
+      "choices": [
+        {
+          "id": "bars",
+          "label": "Reyting ustunlari (bar race)",
+          "hint": "Brend/obyekt belgisi va uzun ustunlar",
+          "vars": {
+            "note": "Har obyekt uchun brend belgisi yoki ikonka kerak bo'ladi.",
+            "look": "clean flat icon"
+          }
+        },
+        {
+          "id": "cards",
+          "label": "Rasmli kartalar",
+          "hint": "Tepada raqam, o'rtada nom, pastda rasm",
+          "vars": {
+            "note": "Har obyekt uchun bitta aniq, yaxshi yoritilgan rasm kerak bo'ladi.",
+            "look": "realistic photo, front view"
+          }
+        },
+        {
+          "id": "pairs",
+          "label": "Juftliklar (A → B)",
+          "hint": "Masalan brend va uning eng qimmat mahsuloti",
+          "vars": {
+            "note": "Har yozuv ikki qismdan iborat: asosiy obyekt va unga bog'langan ikkinchi obyekt.",
+            "look": "realistic photo, front view"
+          }
+        },
+        {
+          "id": "pillars",
+          "label": "Ustunlar + bayroq",
+          "hint": "Balandligi qiymatga teng ustun, ustida rasm, yonida bayroq",
+          "vars": {
+            "note": "Har obyekt qaysidir davlatga tegishli bo'lishi kerak (bayroq uchun).",
+            "look": "realistic 3D render, side view, floating"
+          }
+        }
+      ]
+    }
+  ],
+  "plan": {
+    "long": {
+      "secondsPerItem": 10,
+      "introSeconds": 6,
+      "outroSeconds": 4,
+      "minItems": 4,
+      "maxItems": 60,
+      "itemName": "obyekt"
+    }
+  },
+  "durations": {
+    "long": {
+      "choices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        8,
+        10
+      ],
+      "default": 4
+    }
+  },
+  "schema": {
+    "type": "object",
+    "required": [
+      "sarlavha",
+      "tavsif",
+      "birlik",
+      "obyektlar"
+    ],
+    "properties": {
+      "sarlavha": {
+        "type": "string",
+        "minLength": 5,
+        "maxLength": 100
+      },
+      "tavsif": {
+        "type": "string"
+      },
+      "teglar": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "birlik": {
+        "type": "string"
+      },
+      "manba": {
+        "type": "string"
+      },
+      "obyektlar": {
+        "type": "array",
+        "planCount": "items",
+        "tolerance": 0.1,
+        "items": {
+          "type": "object",
+          "required": [
+            "nom",
+            "english",
+            "qiymat"
+          ],
+          "properties": {
+            "nom": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string",
+              "minLength": 3
+            },
+            "qiymat": {
+              "type": "number"
+            },
+            "kod": {
+              "type": "string",
+              "pattern": "^[A-Za-z]{2}$",
+              "requiredIf": {
+                "option": "shablon",
+                "in": [
+                  "pillars"
+                ]
+              }
+            },
+            "ikkinchi_nom": {
+              "type": "string",
+              "requiredIf": {
+                "option": "shablon",
+                "in": [
+                  "pairs"
+                ]
+              }
+            },
+            "ikkinchi_english": {
+              "type": "string",
+              "requiredIf": {
+                "option": "shablon",
+                "in": [
+                  "pairs"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "example": {
+    "sarlavha": "Eng tez 10 ta hayvon",
+    "tavsif": "Quruqlikdagi eng tez hayvonlar tezligi bo'yicha solishtiriladi.",
+    "teglar": [
+      "hayvonlar",
+      "tezlik",
+      "comparison"
+    ],
+    "birlik": "km/soat",
+    "manba": "Zoologiya ma'lumotnomalari, taxminiy maksimal tezlik",
+    "obyektlar": [
+      {
+        "nom": "Gepard",
+        "english": "a cheetah running, front view",
+        "qiymat": 110
+      },
+      {
+        "nom": "Sher",
+        "english": "a male lion running, front view",
+        "qiymat": 80
+      }
+    ]
+  },
+  "table": {
+    "title": "Obyektlar",
+    "columns": [
+      {
+        "key": "nom",
+        "label": "Nomi",
+        "type": "text",
+        "edit": true
+      },
+      {
+        "key": "qiymat",
+        "label": "Qiymat",
+        "type": "number",
+        "edit": true
+      },
+      {
+        "key": "english",
+        "label": "Rasm tavsifi (EN)",
+        "type": "text",
+        "edit": true,
+        "wide": true
+      },
+      {
+        "key": "kod",
+        "label": "Davlat",
+        "type": "text",
+        "edit": true,
+        "whenOption": {
+          "shablon": [
+            "pillars"
+          ]
+        }
+      },
+      {
+        "key": "ikkinchi_nom",
+        "label": "Ikkinchi nom",
+        "type": "text",
+        "edit": true,
+        "whenOption": {
+          "shablon": [
+            "pairs"
+          ]
+        }
+      },
+      {
+        "key": "ikkinchi_english",
+        "label": "Ikkinchi (EN)",
+        "type": "text",
+        "edit": true,
+        "wide": true,
+        "whenOption": {
+          "shablon": [
+            "pairs"
+          ]
+        }
+      }
+    ]
+  },
+  "images": {
+    "group": 4,
+    "variants": [],
+    "byOption": {
+      "option": "shablon",
+      "configs": {
+        "bars": {
+          "variants": [
+            {
+              "id": "logo",
+              "label": "Belgi rasmi",
+              "template": "A single image divided into a clean 2x2 grid of 4 equal square panels, thin white dividing lines, no text, no captions, no numbers anywhere.\nEach panel shows one {{opt.shablon.look}} on a plain solid dark background, centered, same scale in every panel:\n{{#each group}}Panel {{@index1}}: {{english}}\n{{/each}}"
+            }
+          ]
+        },
+        "cards": {
+          "variants": [
+            {
+              "id": "photo",
+              "label": "Kartalar rasmi",
+              "template": "A single image divided into a clean 2x2 grid of 4 equal square panels, thin white dividing lines, no text, no captions, no numbers, no logos or watermarks.\nEach panel shows one subject, {{opt.shablon.look}}, centered, subject fills about 80% of the panel, same lighting style in every panel:\n{{#each group}}Panel {{@index1}}: {{english}}\n{{/each}}"
+            }
+          ]
+        },
+        "pairs": {
+          "variants": [
+            {
+              "id": "pairs",
+              "label": "Juftliklar rasmi",
+              "template": "A single image divided into 4 equal tall vertical columns, thin white dividing lines, no text, no captions, no numbers, no logos or watermarks.\nEach column has two stacked panels: the top panel shows the first subject, the bottom panel shows the second subject. Same lighting style everywhere, {{opt.shablon.look}}:\n{{#each group}}Column {{@index1}} top: {{english}}\nColumn {{@index1}} bottom: {{ikkinchi_english}}\n{{/each}}"
+            }
+          ]
+        },
+        "pillars": {
+          "variants": [
+            {
+              "id": "object",
+              "label": "Obyektlar rasmi",
+              "template": "A single image divided into a clean 2x2 grid of 4 equal square panels, thin white dividing lines, no text, no captions, no numbers, no flags, no logos.\nEach panel shows one subject, {{opt.shablon.look}}, centered, on a plain neutral gray background, same scale and lighting in every panel:\n{{#each group}}Panel {{@index1}}: {{english}}\n{{/each}}"
+            }
+          ]
+        }
+      }
+    },
+    "hint": "Rasmlarni shu tartibda yarating: har prompt bitta rasm beradi va tartib videodagi tartibga mos."
+  },
+  "voice": null,
+  "computed": null
+}

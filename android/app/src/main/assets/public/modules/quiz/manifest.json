@@ -1,0 +1,309 @@
+{
+  "id": "quiz",
+  "version": "1.0.0",
+  "position": 4,
+  "title": "Quiz",
+  "subtitle": "Detektiv, topishmoq va mantiqiy savollar: rasmdan dalilni top",
+  "badge": "",
+  "tier": "free",
+  "accent": "#9b6bff",
+  "cover": "quiz",
+  "silent": false,
+  "dataPath": "savollar",
+  "sort": null,
+  "topics": [
+    {
+      "group": "Detektiv",
+      "items": [
+        "Kutubxonadagi jinoyat",
+        "Mehmonxonadagi o'g'irlik",
+        "Maktabdagi sirli voqea",
+        "Muzeydagi talonchilik"
+      ]
+    },
+    {
+      "group": "Topishmoq",
+      "items": [
+        "Rasmdagi xato",
+        "Nima o'zgardi?",
+        "Mantiqiy topishmoqlar"
+      ]
+    },
+    {
+      "group": "Kuzatuvchanlik",
+      "items": [
+        "Kim yolg'on gapiryapti?",
+        "Imtihonda ko'chirish",
+        "Dalilni top"
+      ]
+    }
+  ],
+  "options": [
+    {
+      "id": "uslub",
+      "label": "Rasm uslubi",
+      "type": "choice",
+      "default": "karikatura",
+      "choices": [
+        {
+          "id": "karikatura",
+          "label": "Rangli multfilm",
+          "vars": {
+            "look": "colorful cartoon illustration, clean outlines, detailed room interior"
+          }
+        },
+        {
+          "id": "realistik",
+          "label": "Realistik",
+          "vars": {
+            "look": "realistic photo style, natural lighting, detailed interior"
+          }
+        },
+        {
+          "id": "qorongi",
+          "label": "Qorong'i detektiv",
+          "vars": {
+            "look": "dark moody detective noir illustration, dramatic lighting"
+          }
+        }
+      ]
+    }
+  ],
+  "plan": {
+    "long": {
+      "secondsPerItem": 26,
+      "introSeconds": 8,
+      "outroSeconds": 8,
+      "minItems": 3,
+      "maxItems": 40,
+      "itemName": "savol",
+      "wordsPerMinute": 120
+    }
+  },
+  "durations": {
+    "long": {
+      "choices": [
+        2,
+        3,
+        4,
+        5,
+        8,
+        10,
+        15
+      ],
+      "default": 4
+    }
+  },
+  "schema": {
+    "type": "object",
+    "required": [
+      "sarlavha",
+      "tavsif",
+      "kirish",
+      "savollar"
+    ],
+    "properties": {
+      "sarlavha": {
+        "type": "string",
+        "minLength": 5,
+        "maxLength": 100
+      },
+      "tavsif": {
+        "type": "string"
+      },
+      "teglar": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "kirish": {
+        "type": "string"
+      },
+      "xulosa": {
+        "type": "string"
+      },
+      "savollar": {
+        "type": "array",
+        "planCount": "items",
+        "tolerance": 0.1,
+        "items": {
+          "type": "object",
+          "required": [
+            "savol",
+            "sahna_english",
+            "variantlar",
+            "togri",
+            "dalil_nom",
+            "dalil_english"
+          ],
+          "properties": {
+            "savol": {
+              "type": "string",
+              "minLength": 5
+            },
+            "sahna_english": {
+              "type": "string",
+              "minLength": 15
+            },
+            "variantlar": {
+              "type": "array",
+              "minItems": 4,
+              "maxItems": 4,
+              "items": {
+                "type": "string"
+              }
+            },
+            "togri": {
+              "type": "string",
+              "transform": "upper",
+              "enum": [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            },
+            "dalil_nom": {
+              "type": "string"
+            },
+            "dalil_english": {
+              "type": "string",
+              "minLength": 5
+            },
+            "izoh": {
+              "type": "string"
+            },
+            "dalil_markaz": {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "y": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "example": {
+    "sarlavha": "Qotilni top: 5 soniyada dalilni ko'ra olasanmi?",
+    "tavsif": "Rasmga qarab dalilni toping va to'g'ri javobni tanlang.",
+    "teglar": [
+      "quiz",
+      "detektiv",
+      "topishmoq"
+    ],
+    "kirish": "Salom! Bugun detektiv bo'lamiz. Rasmga diqqat bilan qara va dalilni top.",
+    "xulosa": "Nechta savolga to'g'ri javob berding? Izohda yoz!",
+    "savollar": [
+      {
+        "savol": "Kutubxonada kim kitobni o'g'irladi?",
+        "sahna_english": "a quiet library at night with tall bookshelves, a reading table with an open book, a desk lamp, one empty shelf gap, three people standing in the room",
+        "variantlar": [
+          "Kutubxonachi",
+          "Talaba",
+          "Qorovul",
+          "Tadbirkor"
+        ],
+        "togri": "B",
+        "dalil_nom": "Loy izi",
+        "dalil_english": "muddy footprints on the wooden floor leading from the window to the empty shelf",
+        "izoh": "Faqat talaba yomg'irda tashqarida bo'lgan edi, loyli izlar oynadan kelgan.",
+        "dalil_markaz": {
+          "x": 0.5,
+          "y": 0.8
+        }
+      }
+    ]
+  },
+  "table": {
+    "title": "Savollar",
+    "columns": [
+      {
+        "key": "savol",
+        "label": "Savol",
+        "type": "text",
+        "edit": true,
+        "wide": true
+      },
+      {
+        "key": "variantlar.0",
+        "label": "A",
+        "type": "text",
+        "edit": true
+      },
+      {
+        "key": "variantlar.1",
+        "label": "B",
+        "type": "text",
+        "edit": true
+      },
+      {
+        "key": "variantlar.2",
+        "label": "C",
+        "type": "text",
+        "edit": true
+      },
+      {
+        "key": "variantlar.3",
+        "label": "D",
+        "type": "text",
+        "edit": true
+      },
+      {
+        "key": "togri",
+        "label": "To'g'ri",
+        "type": "select",
+        "edit": true,
+        "options": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ]
+      },
+      {
+        "key": "dalil_nom",
+        "label": "Dalil",
+        "type": "text",
+        "edit": true
+      },
+      {
+        "key": "izoh",
+        "label": "Izoh",
+        "type": "text",
+        "edit": true,
+        "wide": true
+      }
+    ]
+  },
+  "images": {
+    "group": 1,
+    "variants": [
+      {
+        "id": "scene",
+        "label": "Savol rasmi",
+        "template": "{{sahna_english}}. {{opt.uslub.look}}. Wide 16:9 composition, no text, no letters, no numbers, no watermark. Everything in plain view, nothing suspicious highlighted."
+      },
+      {
+        "id": "answer",
+        "label": "Javob rasmi (oldingi rasmni tahrirlang)",
+        "template": "Edit the previous image of this scene. Keep everything exactly the same (same room, same people, same style, same camera angle), and add only one new detail: {{dalil_english}}. The new detail must be clearly visible but natural, not glowing, no arrows, no circles, no text."
+      }
+    ],
+    "hint": "Javob rasmini Flow'da savol rasmini tanlab, shu buyruq bilan tahrirlab oling. Shunda ikki rasm bir xil sahna bo'ladi."
+  },
+  "voice": {
+    "template": "{{kirish}}\n\n{{#each savollar}}Savol {{@index1}}. {{savol}}\nVariant A: {{variantlar.0}}. Variant B: {{variantlar.1}}. Variant C: {{variantlar.2}}. Variant D: {{variantlar.3}}.\nVaqt tugadi. To'g'ri javob: {{togri}}. {{izoh}}\n\n{{/each}}{{xulosa}}"
+  },
+  "computed": null
+}

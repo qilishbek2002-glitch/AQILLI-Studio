@@ -1,0 +1,262 @@
+{
+  "id": "stickman",
+  "version": "1.0.0",
+  "position": 6,
+  "title": "Stikman",
+  "subtitle": "Hikoya ssenariysi, sahna rasmlari va diktor matni (Long va Shorts)",
+  "badge": "",
+  "tier": "free",
+  "accent": "#ff9a2e",
+  "cover": "stickman",
+  "silent": false,
+  "dataPath": "sahnalar",
+  "sort": null,
+  "topics": [
+    {
+      "group": "Hayotiy voqealar",
+      "items": [
+        "Maktabdagi kulgili voqea",
+        "Birinchi ish kuni",
+        "Do'stlik hikoyasi"
+      ]
+    },
+    {
+      "group": "Foydali bilimlar",
+      "items": [
+        "Pul tejash sirlari",
+        "Samarali o'qish usullari",
+        "Odatlarni o'zgartirish"
+      ]
+    },
+    {
+      "group": "Sarguzasht va fantastika",
+      "items": [
+        "Kosmosdagi sarguzasht",
+        "Yo'qolgan xazina",
+        "Sehrli dunyo"
+      ]
+    },
+    {
+      "group": "Motivatsiya",
+      "items": [
+        "Muvaffaqiyatsizlikdan g'alabagacha",
+        "Katta orzu sari yo'l"
+      ]
+    }
+  ],
+  "options": [
+    {
+      "id": "uslub",
+      "label": "Stikman uslubi",
+      "type": "choice",
+      "default": "oq",
+      "choices": [
+        {
+          "id": "oq",
+          "label": "Oq stikman, rangli fon",
+          "vars": {
+            "look": "simple white stick figure character with a round head and two dot eyes, thick black outlines, flat colorful background"
+          }
+        },
+        {
+          "id": "qora",
+          "label": "Qora stikman, och fon",
+          "vars": {
+            "look": "simple black stick figure character with a round head, thin clean lines, light pastel flat background"
+          }
+        },
+        {
+          "id": "multfilm",
+          "label": "Multfilm uslubi",
+          "vars": {
+            "look": "2D cartoon stick figure character with expressive face, bold colors, flat illustration"
+          }
+        }
+      ]
+    }
+  ],
+  "plan": {
+    "long": {
+      "secondsPerItem": 8,
+      "introSeconds": 0,
+      "outroSeconds": 0,
+      "minItems": 6,
+      "maxItems": 120,
+      "itemName": "sahna",
+      "wordsPerMinute": 120
+    },
+    "short": {
+      "secondsPerItem": 4,
+      "introSeconds": 0,
+      "outroSeconds": 0,
+      "minItems": 4,
+      "maxItems": 45,
+      "itemName": "sahna",
+      "wordsPerMinute": 120
+    }
+  },
+  "durations": {
+    "long": {
+      "choices": [
+        2,
+        3,
+        4,
+        5,
+        8,
+        10,
+        15
+      ],
+      "default": 4
+    },
+    "short": {
+      "choices": [
+        0.5,
+        1,
+        2
+      ],
+      "default": 1,
+      "min": 0.25,
+      "max": 3
+    }
+  },
+  "schema": {
+    "type": "object",
+    "required": [
+      "sarlavha",
+      "tavsif",
+      "sahnalar"
+    ],
+    "properties": {
+      "sarlavha": {
+        "type": "string",
+        "minLength": 5,
+        "maxLength": 100
+      },
+      "tavsif": {
+        "type": "string"
+      },
+      "teglar": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "sahnalar": {
+        "type": "array",
+        "planCount": "items",
+        "tolerance": 0.15,
+        "items": {
+          "type": "object",
+          "required": [
+            "matn",
+            "english"
+          ],
+          "properties": {
+            "matn": {
+              "type": "string",
+              "minLength": 3
+            },
+            "english": {
+              "type": "string",
+              "minLength": 10
+            },
+            "effekt": {
+              "type": "string",
+              "transform": "lower",
+              "enum": [
+                "zoom_in",
+                "zoom_out",
+                "pan_left",
+                "pan_right",
+                "shake",
+                "none"
+              ]
+            },
+            "soniya": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 30
+            }
+          }
+        }
+      }
+    }
+  },
+  "example": {
+    "sarlavha": "Stikman va yo'qolgan xazina",
+    "tavsif": "Stikman sarguzashtga chiqadi va kutilmagan xazinani topadi.",
+    "teglar": [
+      "stikman",
+      "hikoya",
+      "sarguzasht"
+    ],
+    "sahnalar": [
+      {
+        "matn": "Bir kuni stikman eski xarita topdi.",
+        "english": "the stick figure finds an old torn treasure map on a dusty attic floor, surprised face",
+        "effekt": "zoom_in",
+        "soniya": 6
+      },
+      {
+        "matn": "U darhol yo'lga chiqishga qaror qildi.",
+        "english": "the stick figure packs a small backpack and stands at a door with sunrise behind, determined pose",
+        "effekt": "pan_right",
+        "soniya": 6
+      }
+    ]
+  },
+  "table": {
+    "title": "Sahnalar",
+    "columns": [
+      {
+        "key": "matn",
+        "label": "Diktor matni",
+        "type": "text",
+        "edit": true,
+        "wide": true
+      },
+      {
+        "key": "english",
+        "label": "Rasm tavsifi (EN)",
+        "type": "text",
+        "edit": true,
+        "wide": true
+      },
+      {
+        "key": "effekt",
+        "label": "Effekt",
+        "type": "select",
+        "edit": true,
+        "options": [
+          "none",
+          "zoom_in",
+          "zoom_out",
+          "pan_left",
+          "pan_right",
+          "shake"
+        ]
+      },
+      {
+        "key": "soniya",
+        "label": "Soniya",
+        "type": "number",
+        "edit": true
+      }
+    ]
+  },
+  "images": {
+    "group": 1,
+    "variants": [
+      {
+        "id": "scene",
+        "label": "Sahna rasmi",
+        "template": "{{english}}. {{opt.uslub.look}}. Consistent same character design in every scene, clear simple composition, {{aspect}} framing, no text, no speech bubbles, no watermark."
+      }
+    ],
+    "hint": "Barcha sahnalarda stikman bir xil ko'rinishda chiqishi uchun bir xil uslubdagi rasmlarni ketma-ket yarating."
+  },
+  "voice": {
+    "template": "{{#each sahnalar}}{{matn}} {{/each}}"
+  },
+  "computed": null
+}

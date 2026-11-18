@@ -1,0 +1,288 @@
+{
+  "id": "find-original",
+  "version": "1.0.0",
+  "position": 5,
+  "title": "Asl nusxani top",
+  "subtitle": "Ko'p o'zgartirilgan nusxa orasidan 5 soniyada asosiysini top (Shorts va Long)",
+  "badge": "Yangi",
+  "tier": "free",
+  "accent": "#22e57a",
+  "cover": "find",
+  "silent": true,
+  "dataPath": "raundlar",
+  "sort": null,
+  "topics": [
+    {
+      "group": "Bayroqlar",
+      "items": [
+        "Mashhur davlat bayroqlari",
+        "Yevropa bayroqlari",
+        "Osiyo bayroqlari",
+        "Afrika bayroqlari"
+      ]
+    },
+    {
+      "group": "Brend logotiplari",
+      "items": [
+        "Mashhur brend logotiplari",
+        "Avtomobil brendlari",
+        "Telefon va texnologiya brendlari",
+        "Oziq-ovqat brendlari"
+      ]
+    },
+    {
+      "group": "Mashinalar va buyumlar",
+      "items": [
+        "Mashhur mashina modellari",
+        "Mashhur soatlar",
+        "Ilovalar ikonkalari"
+      ]
+    },
+    {
+      "group": "Multfilm / original personajlar",
+      "items": [
+        "Original multfilm personajlar",
+        "Hayvon personajlari"
+      ]
+    }
+  ],
+  "options": [
+    {
+      "id": "tor",
+      "label": "To'r hajmi",
+      "type": "choice",
+      "default": "5x5",
+      "choices": [
+        {
+          "id": "4x4",
+          "label": "4 × 4 (16 ta)",
+          "vars": {
+            "cells": 16,
+            "others": 15,
+            "size": "4x4"
+          }
+        },
+        {
+          "id": "5x5",
+          "label": "5 × 5 (25 ta)",
+          "vars": {
+            "cells": 25,
+            "others": 24,
+            "size": "5x5"
+          }
+        },
+        {
+          "id": "6x6",
+          "label": "6 × 6 (36 ta)",
+          "vars": {
+            "cells": 36,
+            "others": 35,
+            "size": "6x6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "variantlar",
+      "label": "O'zgartirilgan nusxalarni kim yasaydi?",
+      "type": "choice",
+      "default": "dastur",
+      "choices": [
+        {
+          "id": "dastur",
+          "label": "Dastur o'zi (tez, rang/shakl/siljish)",
+          "vars": {}
+        },
+        {
+          "id": "ai",
+          "label": "AI (Flow/Gemini) bilan yaratiladi",
+          "vars": {}
+        }
+      ]
+    }
+  ],
+  "plan": {
+    "long": {
+      "secondsPerItem": 14,
+      "introSeconds": 5,
+      "outroSeconds": 5,
+      "minItems": 3,
+      "maxItems": 60,
+      "itemName": "raund"
+    },
+    "short": {
+      "secondsPerItem": 10,
+      "introSeconds": 2,
+      "outroSeconds": 3,
+      "minItems": 2,
+      "maxItems": 12,
+      "itemName": "raund"
+    }
+  },
+  "durations": {
+    "long": {
+      "choices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        8,
+        10
+      ],
+      "default": 4
+    },
+    "short": {
+      "choices": [
+        0.5,
+        1,
+        2
+      ],
+      "default": 1,
+      "min": 0.25,
+      "max": 3
+    }
+  },
+  "schema": {
+    "type": "object",
+    "required": [
+      "sarlavha",
+      "tavsif",
+      "raundlar"
+    ],
+    "properties": {
+      "sarlavha": {
+        "type": "string",
+        "minLength": 5,
+        "maxLength": 100
+      },
+      "tavsif": {
+        "type": "string"
+      },
+      "teglar": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "raundlar": {
+        "type": "array",
+        "planCount": "items",
+        "tolerance": 0.1,
+        "items": {
+          "type": "object",
+          "required": [
+            "nom",
+            "english",
+            "kategoriya",
+            "qiyinlik"
+          ],
+          "properties": {
+            "nom": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string",
+              "minLength": 5
+            },
+            "kategoriya": {
+              "type": "string"
+            },
+            "qiyinlik": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "ozgartirish": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "example": {
+    "sarlavha": "5 soniyada asl bayroqni top!",
+    "tavsif": "Ko'p o'zgartirilgan nusxalar orasidan haqiqiy bayroqni toping.",
+    "teglar": [
+      "bayroq",
+      "find the original",
+      "challenge"
+    ],
+    "raundlar": [
+      {
+        "nom": "Yaponiya bayrog'i",
+        "english": "flag of Japan, flat vector, rectangular white flag with a red circle in the center",
+        "kategoriya": "bayroq",
+        "qiyinlik": 1,
+        "ozgartirish": "doira o'lchami va rangi"
+      },
+      {
+        "nom": "Fransiya bayrog'i",
+        "english": "flag of France, flat vector, three equal vertical stripes blue white red",
+        "kategoriya": "bayroq",
+        "qiyinlik": 2,
+        "ozgartirish": "chiziqlar tartibi va rang tusi"
+      }
+    ]
+  },
+  "table": {
+    "title": "Raundlar",
+    "columns": [
+      {
+        "key": "nom",
+        "label": "Nomi",
+        "type": "text",
+        "edit": true
+      },
+      {
+        "key": "kategoriya",
+        "label": "Kategoriya",
+        "type": "text",
+        "edit": true
+      },
+      {
+        "key": "qiyinlik",
+        "label": "Qiyinlik (1-5)",
+        "type": "number",
+        "edit": true
+      },
+      {
+        "key": "english",
+        "label": "Asl rasm tavsifi (EN)",
+        "type": "text",
+        "edit": true,
+        "wide": true
+      },
+      {
+        "key": "ozgartirish",
+        "label": "Nimani o'zgartirish",
+        "type": "text",
+        "edit": true,
+        "wide": true
+      }
+    ]
+  },
+  "images": {
+    "group": 1,
+    "variants": [
+      {
+        "id": "original",
+        "label": "Asl rasm",
+        "template": "{{english}}. Clean flat vector illustration, centered, the subject fills the frame with a small margin, plain solid light-gray background, sharp edges, no text overlay, no watermark, square 1:1 image."
+      },
+      {
+        "id": "variants",
+        "label": "O'zgartirilgan nusxalar (AI)",
+        "when": {
+          "option": "variantlar",
+          "equals": "ai"
+        },
+        "template": "Using the attached original image, create a single {{opt.tor.size}} grid image with {{opt.tor.cells}} equally sized square cells, thin white borders. Every cell contains the same subject: {{english}}. One cell must stay exactly identical to the original; the other {{opt.tor.others}} cells must each have one small DIFFERENT change ({{ozgartirish}}), difficulty {{qiyinlik}} out of 5 (subtle but visible). No numbers, no text, no watermark."
+      }
+    ],
+    "hint": "Asl rasm kvadrat bo'lsin. O'zgartirilgan nusxalarni dastur o'zi yasaydi (AI varianti tanlangan bo'lsa, ikkinchi prompt kerak)."
+  },
+  "voice": null,
+  "computed": null
+}
