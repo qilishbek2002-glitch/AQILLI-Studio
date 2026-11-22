@@ -9,6 +9,8 @@ import { validate } from '../core/validate.js';
 import { buildOutputs, estimateImages, imagesAsText, sortedItems } from '../core/outputs.js';
 import { AI_SITES, prepareLink, copyText } from '../core/handoff.js';
 import { saveProject, getCovers } from '../core/store.js';
+import { mediaPanel } from './media.js';
+import { videoPanel } from './video.js';
 import { debounce, getPath, setPath, fmtDuration } from '../core/util.js';
 
 async function copy(text, what = 'Nusxalandi') {
@@ -482,18 +484,9 @@ export function wizardView(app, m, p) {
   function renderNext() {
     clear(nextBox);
     nextBox.append(
-      h(
-        'div',
-        { class: 'next-box' },
-        h('h3', {}, 'Keyingi bosqich: rasmlarni yuklash va video yig\'ish'),
-        h('span', { class: 'muted' }, 'Bu qism hali qurilmagan, keyingi bosqichda shu yerga qo\'shiladi. Hozircha rasmlarni yaratib, loyihani saqlab qo\'yishingiz mumkin.'),
-        h(
-          'div',
-          { class: 'send-row' },
-          h('button', { class: 'btn', type: 'button', disabled: true }, 'Rasmlarni yuklash'),
-          h('button', { class: 'btn', type: 'button', onclick: () => download(`${m.id}-loyiha.json`, JSON.stringify(p, null, 2), 'application/json') }, icon('download', 16), 'Loyihani yuklab olish')
-        )
-      )
+      mediaPanel(m, p),
+      videoPanel(m, p),
+      h('div', { class: 'send-row' }, h('button', { class: 'btn', type: 'button', onclick: () => download(`${m.id}-loyiha.json`, JSON.stringify(p, null, 2), 'application/json') }, icon('download', 16), 'Loyiha matnini yuklab olish (rasmlarsiz)'))
     );
   }
 

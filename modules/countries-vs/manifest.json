@@ -11,15 +11,31 @@
   "silent": true,
   "dataPath": "kategoriyalar",
   "sort": null,
-
   "topics": [
-    { "group": "Umumiy ko'rsatkichlar", "items": ["Aholi, maydon, iqtisodiyot", "Hayot sifati va ta'lim", "Tabiiy resurslar"] },
-    { "group": "Harbiy salohiyat", "items": ["Armiya soni, tanklar, samolyotlar, flot", "Harbiy byudjet va texnika"] },
-    { "group": "Texnologiya va sport", "items": ["Texnologiya va innovatsiya", "Olimpiya medallari va sport"] }
+    {
+      "group": "Umumiy ko'rsatkichlar",
+      "items": [
+        "Aholi, maydon, iqtisodiyot",
+        "Hayot sifati va ta'lim",
+        "Tabiiy resurslar"
+      ]
+    },
+    {
+      "group": "Harbiy salohiyat",
+      "items": [
+        "Armiya soni, tanklar, samolyotlar, flot",
+        "Harbiy byudjet va texnika"
+      ]
+    },
+    {
+      "group": "Texnologiya va sport",
+      "items": [
+        "Texnologiya va innovatsiya",
+        "Olimpiya medallari va sport"
+      ]
+    }
   ],
-
   "options": [],
-
   "plan": {
     "long": {
       "secondsPerItem": 12,
@@ -30,27 +46,69 @@
       "itemName": "kategoriya"
     }
   },
-  "durations": { "long": { "choices": [1, 2, 3, 4, 5, 8], "default": 4 } },
-
+  "durations": {
+    "long": {
+      "choices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        8
+      ],
+      "default": 4
+    }
+  },
   "schema": {
     "type": "object",
-    "required": ["sarlavha", "tavsif", "tomonlar", "kategoriyalar"],
+    "required": [
+      "sarlavha",
+      "tavsif",
+      "tomonlar",
+      "kategoriyalar"
+    ],
     "properties": {
-      "sarlavha": { "type": "string", "minLength": 5, "maxLength": 100 },
-      "tavsif": { "type": "string" },
-      "teglar": { "type": "array", "items": { "type": "string" } },
-      "yil": { "type": "integer", "minimum": 1990, "maximum": 2100 },
+      "sarlavha": {
+        "type": "string",
+        "minLength": 5,
+        "maxLength": 100
+      },
+      "tavsif": {
+        "type": "string"
+      },
+      "teglar": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "yil": {
+        "type": "integer",
+        "minimum": 1990,
+        "maximum": 2100
+      },
       "tomonlar": {
         "type": "array",
         "minItems": 2,
         "maxItems": 2,
         "items": {
           "type": "object",
-          "required": ["nom", "english", "kod"],
+          "required": [
+            "nom",
+            "english",
+            "kod"
+          ],
           "properties": {
-            "nom": { "type": "string" },
-            "english": { "type": "string" },
-            "kod": { "type": "string", "pattern": "^[A-Za-z]{2}$" }
+            "nom": {
+              "type": "string"
+            },
+            "english": {
+              "type": "string"
+            },
+            "kod": {
+              "type": "string",
+              "pattern": "^[A-Za-z]{2}$"
+            }
           }
         }
       },
@@ -60,51 +118,134 @@
         "tolerance": 0.15,
         "items": {
           "type": "object",
-          "required": ["nom", "birlik", "qiymat_a", "qiymat_b"],
+          "required": [
+            "nom",
+            "birlik",
+            "qiymat_a",
+            "qiymat_b"
+          ],
           "properties": {
-            "nom": { "type": "string" },
-            "birlik": { "type": "string" },
-            "qiymat_a": { "type": "number" },
-            "qiymat_b": { "type": "number" },
-            "kattasi_yaxshi": { "type": "boolean" },
-            "manba": { "type": "string" },
-            "yil": { "type": "integer" }
+            "nom": {
+              "type": "string"
+            },
+            "birlik": {
+              "type": "string"
+            },
+            "qiymat_a": {
+              "type": "number"
+            },
+            "qiymat_b": {
+              "type": "number"
+            },
+            "kattasi_yaxshi": {
+              "type": "boolean"
+            },
+            "manba": {
+              "type": "string"
+            },
+            "yil": {
+              "type": "integer"
+            }
           }
         }
       }
     }
   },
-
   "example": {
     "sarlavha": "Davlat A va Davlat B: kim kuchliroq?",
     "tavsif": "Ikki davlat asosiy ko'rsatkichlar bo'yicha solishtiriladi.",
-    "teglar": ["davlatlar", "solishtirish", "vs"],
+    "teglar": [
+      "davlatlar",
+      "solishtirish",
+      "vs"
+    ],
     "yil": 2025,
     "tomonlar": [
-      { "nom": "Birinchi davlat", "english": "First Country", "kod": "AA" },
-      { "nom": "Ikkinchi davlat", "english": "Second Country", "kod": "BB" }
+      {
+        "nom": "Birinchi davlat",
+        "english": "First Country",
+        "kod": "AA"
+      },
+      {
+        "nom": "Ikkinchi davlat",
+        "english": "Second Country",
+        "kod": "BB"
+      }
     ],
     "kategoriyalar": [
-      { "nom": "Aholi soni", "birlik": "mln kishi", "qiymat_a": 144, "qiymat_b": 333, "kattasi_yaxshi": true, "manba": "BMT, 2024", "yil": 2024 },
-      { "nom": "Bolalar o'limi", "birlik": "1000 tug'ilishga", "qiymat_a": 4, "qiymat_b": 5.4, "kattasi_yaxshi": false, "manba": "Jahon banki, 2023", "yil": 2023 }
+      {
+        "nom": "Aholi soni",
+        "birlik": "mln kishi",
+        "qiymat_a": 144,
+        "qiymat_b": 333,
+        "kattasi_yaxshi": true,
+        "manba": "BMT, 2024",
+        "yil": 2024
+      },
+      {
+        "nom": "Bolalar o'limi",
+        "birlik": "1000 tug'ilishga",
+        "qiymat_a": 4,
+        "qiymat_b": 5.4,
+        "kattasi_yaxshi": false,
+        "manba": "Jahon banki, 2023",
+        "yil": 2023
+      }
     ]
   },
-
   "table": {
     "title": "Kategoriyalar",
     "columns": [
-      { "key": "nom", "label": "Kategoriya", "type": "text", "edit": true },
-      { "key": "birlik", "label": "Birlik", "type": "text", "edit": true },
-      { "key": "qiymat_a", "label": "A qiymati", "type": "number", "edit": true },
-      { "key": "qiymat_b", "label": "B qiymati", "type": "number", "edit": true },
-      { "key": "kattasi_yaxshi", "label": "Kattasi yaxshi?", "type": "bool", "edit": true },
-      { "key": "manba", "label": "Manba", "type": "text", "edit": true, "wide": true },
-      { "key": "yil", "label": "Yil", "type": "number", "edit": true }
+      {
+        "key": "nom",
+        "label": "Kategoriya",
+        "type": "text",
+        "edit": true
+      },
+      {
+        "key": "birlik",
+        "label": "Birlik",
+        "type": "text",
+        "edit": true
+      },
+      {
+        "key": "qiymat_a",
+        "label": "A qiymati",
+        "type": "number",
+        "edit": true
+      },
+      {
+        "key": "qiymat_b",
+        "label": "B qiymati",
+        "type": "number",
+        "edit": true
+      },
+      {
+        "key": "kattasi_yaxshi",
+        "label": "Kattasi yaxshi?",
+        "type": "bool",
+        "edit": true
+      },
+      {
+        "key": "manba",
+        "label": "Manba",
+        "type": "text",
+        "edit": true,
+        "wide": true
+      },
+      {
+        "key": "yil",
+        "label": "Yil",
+        "type": "number",
+        "edit": true
+      }
     ]
   },
-
   "images": null,
   "voice": null,
   "computed": "countriesScore",
-  "notes": "Bayroqlar dasturning o'zida chiziladi (davlat ikki harfli kodi bo'yicha), AI rasmlari kerak emas."
+  "notes": "Bayroqlar dasturning o'zida chiziladi (davlat ikki harfli kodi bo'yicha), AI rasmlari kerak emas.",
+  "video": {
+    "renderer": "countries-vs"
+  }
 }

@@ -347,3 +347,52 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .btn:has(+ .sr-only:focus-visible), label.btn:focus-within { outline: 3px solid var(--acc); outline-offset: 2px; }
 input.sr-only:focus-visible + label.btn { outline: 3px solid var(--acc); outline-offset: 2px; }
+
+/* ---- Rasmlar va video ---- */
+.media { display: grid; gap: 18px; min-width: 0; }
+.media-top h2 { margin: 0 0 8px; }
+.prog { display: grid; gap: 6px; }
+.prog .bar { height: 14px; border: var(--bw) solid var(--stroke); border-radius: 99px; background: var(--surface2); overflow: hidden; }
+.prog .bar i { display: block; height: 100%; background: var(--acc); transition: width .25s; }
+.media-group { display: grid; gap: 12px; min-width: 0; }
+.dropzone { border: var(--bw) dashed var(--stroke); border-radius: var(--r-card); padding: 14px; display: grid; gap: 8px; }
+.dropzone.over, .slot.over { background: var(--surface2); border-color: var(--acc); }
+.slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; min-width: 0; }
+.slot { border: var(--bw) solid var(--stroke); border-radius: 18px; padding: 10px; display: grid; gap: 8px; background: var(--surface); align-content: start; min-width: 0; }
+.slot.has { border-color: var(--acc); }
+.slot-head { display: grid; gap: 2px; min-width: 0; }
+.slot-head strong { overflow-wrap: anywhere; }
+.slot-head .muted { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.slot-view, .slot-empty, .slot-audio { aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; display: grid; place-items: center; background: var(--surface2); }
+.slot-audio { aspect-ratio: auto; min-height: 54px; padding: 4px; }
+.slot-audio audio { width: 100%; }
+.slot-empty { color: var(--muted); gap: 4px; align-content: center; justify-items: center; font-size: 13px; }
+.slot-img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.slot-img.checker { background: repeating-conic-gradient(#3a3f6e 0% 25%, #2a2f55 0% 50%) 0 0 / 18px 18px; }
+.slot-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.slot-pick { display: flex; gap: 8px; align-items: center; font-size: 13px; }
+.slot-pick input { width: 70px; }
+.small-switch { font-size: 13px; }
+.video-panel { display: grid; gap: 14px; min-width: 0; }
+.stage, .rec { display: grid; gap: 10px; min-width: 0; }
+canvas.preview, video.preview { width: 100%; max-width: 100%; height: auto; border: var(--bw) solid var(--stroke); border-radius: 16px; background: #000; display: block; }
+.player-bar { display: flex; gap: 10px; align-items: center; }
+.player-bar input[type=range] { flex: 1; min-width: 0; }
+
+/* ---- logo, bosh sahifa banneri, muqova tugmasi ---- */
+.brand .mark { background: none !important; border: 0 !important; box-shadow: none !important; width: 38px; height: 38px; padding: 0; display: inline-grid; place-items: center; }
+.brand .mark svg, .topbar .mark svg { width: 38px; height: 38px; display: block; }
+.topbar .mark { background: none; border: 0; box-shadow: none; width: 32px; height: 32px; padding: 0; }
+.topbar .mark svg { width: 32px; height: 32px; }
+.hero { display: flex; gap: 22px; align-items: center; padding: 22px 26px; margin-bottom: 22px; border: var(--bw) solid var(--stroke); border-radius: 26px; box-shadow: 6px 6px 0 var(--hard); background: linear-gradient(120deg, var(--surface) 0%, var(--surface2) 60%, var(--acc-soft) 100%); min-width: 0; }
+.hero-logo { flex: none; width: 104px; height: 104px; filter: drop-shadow(4px 4px 0 var(--hard)); }
+.hero-logo svg { width: 100%; height: 100%; display: block; }
+.hero-text { min-width: 0; display: grid; gap: 8px; }
+.hero-text h1 { margin: 0; font-size: clamp(1.5rem, 4.2vw, 2.3rem); letter-spacing: -.03em; }
+.hero-text p { margin: 0; color: var(--muted); }
+.hero-steps { display: flex; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 560px) { .hero { padding: 16px; gap: 14px; } .hero-logo { width: 68px; height: 68px; } }
+.poster { position: relative; }
+.cover-edit { position: absolute; left: 10px; bottom: auto; top: 10px; z-index: 3; display: inline-flex; gap: 5px; align-items: center; padding: 5px 10px; border-radius: 99px; border: var(--bw) solid #14163a; background: #fff; color: #14163a; font-weight: 800; font-size: 12px; cursor: pointer; opacity: 0; transition: opacity .15s; }
+.poster:hover .cover-edit, .poster:focus-within .cover-edit { opacity: 1; }
+@media (hover: none) { .cover-edit { opacity: 1; } }

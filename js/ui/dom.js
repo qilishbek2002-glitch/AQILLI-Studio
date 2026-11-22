@@ -52,6 +52,11 @@ const P = {
   plus: '<path d="M12 5v14M5 12h14"/>',
   warn: '<path d="M12 4 2.8 19.5h18.4z"/><path d="M12 10v4.5M12 17.2v.1"/>',
   info: '<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8v.1"/>',
+  image: '<rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"/>',
+  mic: '<rect x="9" y="3.5" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/>',
+  play: '<path d="M8 5.5v13l11-6.5z"/>',
+  pause: '<path d="M8 5.5v13M16 5.5v13"/>',
+  film: '<rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M8 5v14M16 5v14M3.5 9.5H8M3.5 14.5H8M16 9.5h4.5M16 14.5h4.5"/>',
   sparkle: '<path d="M12 3.5 14 10l6.5 2-6.5 2-2 6.5-2-6.5-6.5-2 6.5-2z"/>',
 };
 
@@ -90,6 +95,25 @@ async function nativeSave(filename, text) {
   const safe = filename.replace(/[^\w.\-]+/g, '_');
   const r = await Filesystem.writeFile({ path: safe, data: text, directory: 'CACHE', encoding: 'utf8' });
   await Share.share({ title: filename, url: r.uri, dialogTitle: 'Faylni saqlash yoki yuborish' });
+}
+
+// Katta fayl (video) saqlash: kompyuterda yuklab olinadi, Android'da "Ulashish" oynasi orqali.
+export async function downloadBlob(filename, blob) {
+  const cap = typeof window !== 'undefined' ? window.Capacitor : null;
+  if (cap?.isNativePlatform?.()) {
+    const { Filesystem, Share } = cap.Plugins;
+    const b64 = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(',')[1]); r.onerror = rej; r.readAsDataURL(blob); });
+    const safe = filename.replace(/[^\w.\-]+/g, '_');
+    const w = await Filesystem.writeFile({ path: safe, data: b64, directory: 'CACHE' });
+    await Share.share({ title: filename, url: w.uri, dialogTitle: 'Videoni saqlash yoki yuborish' });
+    return;
+  }
+  const url = URL.createObjectURL(blob);
+  const a = h('a', { href: url, download: filename });
+  document.body.append(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
 }
 
 function openDialog(title, body, actions) {

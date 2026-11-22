@@ -244,5 +244,8 @@
     "hint": "Maxluqlar toza yashil fonda (#00FF00) bo'lishi kerak. Dastur keyin yashil rangni shaffof qiladi."
   },
   "voice": null,
-  "computed": null
+  "computed": null,
+  "video": {
+    "renderer": "monster"
+  }
 }

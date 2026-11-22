@@ -1,5 +1,6 @@
 import { h, icon, toast, download, confirmDialog } from './dom.js';
 import { listProjects, deleteProject } from '../core/store.js';
+import { clearProjectMedia } from '../core/media.js';
 
 export function projectsView(app, rerender) {
   const byId = Object.fromEntries(app.modules.map((m) => [m.id, m]));
@@ -22,7 +23,7 @@ export function projectsView(app, rerender) {
               { class: 'send-row', style: { marginTop: '8px' } },
               h('a', { class: 'btn small primary', href: `#p-${p.id}` }, 'Ochish'),
               h('button', { class: 'btn small', type: 'button', 'aria-label': 'Yuklab olish', onclick: () => download(`${p.moduleId}-loyiha.json`, JSON.stringify(p, null, 2), 'application/json') }, icon('download', 16)),
-              h('button', { class: 'btn small danger', type: 'button', 'aria-label': 'O\'chirish', onclick: async () => { if (await confirmDialog('Bu loyiha o\'chiriladi. Qaytarib bo\'lmaydi.')) { deleteProject(p.id); toast('Loyiha o\'chirildi'); rerender(); } } }, icon('trash', 16))
+              h('button', { class: 'btn small danger', type: 'button', 'aria-label': 'O\'chirish', onclick: async () => { if (await confirmDialog('Bu loyiha o\'chiriladi. Qaytarib bo\'lmaydi.')) { deleteProject(p.id); clearProjectMedia(p.id); toast('Loyiha o\'chirildi'); rerender(); } } }, icon('trash', 16))
             )
           );
         })

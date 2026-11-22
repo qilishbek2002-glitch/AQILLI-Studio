@@ -284,5 +284,8 @@
     "hint": "Asl rasm kvadrat bo'lsin. O'zgartirilgan nusxalarni dastur o'zi yasaydi (AI varianti tanlangan bo'lsa, ikkinchi prompt kerak)."
   },
   "voice": null,
-  "computed": null
+  "computed": null,
+  "video": {
+    "renderer": "find-original"
+  }
 }

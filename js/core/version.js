@@ -1,5 +1,5 @@
 // Dastur versiyasi. Modul "minApp" talab qilsa, shu bilan solishtiriladi.
-export const APP_VERSION = '1.0.0';
+export const APP_VERSION = '1.1.0';
 
 export function parseVer(v) {
   const m = String(v ?? '').match(/^(\d+)\.(\d+)\.(\d+)$/);

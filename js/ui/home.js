@@ -1,6 +1,7 @@
-import { h, icon } from './dom.js';
-import { coverHtml } from './covers.js';
-import { getCovers } from '../core/store.js';
+import { h, icon, toast } from './dom.js';
+import { LOGO_SVG } from './shell.js';
+import { coverHtml, fitImage } from './covers.js';
+import { getCovers, setCover } from '../core/store.js';
 import { availableFormats } from '../core/plan.js';
 import { isUnlocked } from '../core/license.js';
 import { listProjects } from '../core/store.js';
@@ -30,6 +31,20 @@ function posterCard(m) {
       )
     )
   );
+  const art = card.querySelector('.art');
+  const fid = `hc-${m.id}`;
+  const pick = h('input', { type: 'file', accept: 'image/*', id: fid, class: 'sr-only', onclick: (e) => e.stopPropagation(), onchange: async (e) => {
+    const f = e.target.files?.[0]; e.target.value = '';
+    if (!f) return;
+    try {
+      const url = await fitImage(f);
+      setCover(m.id, url);
+      art.innerHTML = coverHtml(m, getCovers());
+      toast(`"${m.title}" rasmi almashtirildi`);
+    } catch (err) { toast(err.message, 'err'); }
+  } });
+  const change = h('label', { class: 'cover-edit', for: fid, title: 'Muqova rasmini almashtirish', onclick: (e) => e.stopPropagation() }, icon('image', 16), 'Rasm');
+  card.append(pick, change);
   if (!open) card.append(h('span', { class: 'ribbon lock' }, icon('lock', 14), 'Pullik'));
   else if (m.badge) card.append(h('span', { class: 'ribbon' }, m.badge));
   return card;
@@ -58,7 +73,14 @@ export function homeView(app) {
   return h(
     'div',
     {},
-    h('div', { class: 'page-head' }, h('h1', {}, 'Qaysi video yasaymiz?'), h('p', {}, 'Bo\'limni tanlang, mavzu va davomiylikni yozing. Buyruq, rasm promptlari va ovoz matnini dastur tayyorlaydi.')),
+    h('section', { class: 'hero' },
+      h('div', { class: 'hero-logo', html: LOGO_SVG }),
+      h('div', { class: 'hero-text' },
+        h('h1', {}, 'Qaysi video yasaymiz?'),
+        h('p', {}, 'Bo\'lim → mavzu → AI buyrug\'i → rasmlar → tayyor video. Hammasi bir joyda.'),
+        h('div', { class: 'hero-steps' }, ['1 Mavzu', '2 AI javobi', '3 Rasmlar', '4 Video'].map((x) => h('span', { class: 'pill' }, x)))
+      )
+    ),
     h('div', { class: 'posters' }, app.modules.map(posterCard)),
     h('div', { class: 'section-title' }, h('h2', {}, 'So\'nggi loyihalar'), projects.length ? h('a', { href: '#projects', class: 'btn small ghost' }, 'Hammasi') : null),
     recent

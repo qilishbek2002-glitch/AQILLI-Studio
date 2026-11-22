@@ -258,5 +258,8 @@
   "voice": {
     "template": "{{#each sahnalar}}{{matn}} {{/each}}"
   },
-  "computed": null
+  "computed": null,
+  "video": {
+    "renderer": "stickman"
+  }
 }

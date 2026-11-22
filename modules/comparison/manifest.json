@@ -345,5 +345,8 @@
     "hint": "Rasmlarni shu tartibda yarating: har prompt bitta rasm beradi va tartib videodagi tartibga mos."
   },
   "voice": null,
-  "computed": null
+  "computed": null,
+  "video": {
+    "renderer": "comparison"
+  }
 }

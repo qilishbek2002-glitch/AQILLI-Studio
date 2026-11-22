@@ -31,8 +31,10 @@ APK: `android/app/build/outputs/apk/debug/app-debug.apk`
 Bo'lim va promptlar `modules/` ichida. Ularni o'z serveringizga (GitHub Pages ham bo'ladi) joylang:
 `modules/index.json` + har bir `<id>.json`. Dasturda **Sozlamalar → Yangilanish manzili** ga `index.json` havolasini yozing — yangi bo'lim va promptlar o'rnatiladi. Faqat dastur kodi (js/css) o'zgarsa, yangi APK kerak bo'ladi.
 
+## Rasmlar va video (1.1.0)
+Loyiha natijasi ostida: **Rasmlar va ovoz** (katakchalarga yuklash, ommaviy yuklash, ZIP, almashtirish) va **Video** (ko'rib chiqish va yozib olish, MP4 yoki WebM). Yozish video uzunligicha vaqt oladi.
+
 ## Hozircha yo'q
-- Rasm yuklash va videoni yig'ish bosqichi
 - Kalit tekshiruvchi server (pullik tarif)
 - Windows o'rnatuvchisi (Electron/Tauri)
 

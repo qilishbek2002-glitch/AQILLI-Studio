@@ -305,5 +305,8 @@
   "voice": {
     "template": "{{kirish}}\n\n{{#each savollar}}Savol {{@index1}}. {{savol}}\nVariant A: {{variantlar.0}}. Variant B: {{variantlar.1}}. Variant C: {{variantlar.2}}. Variant D: {{variantlar.3}}.\nVaqt tugadi. To'g'ri javob: {{togri}}. {{izoh}}\n\n{{/each}}{{xulosa}}"
   },
-  "computed": null
+  "computed": null,
+  "video": {
+    "renderer": "quiz"
+  }
 }

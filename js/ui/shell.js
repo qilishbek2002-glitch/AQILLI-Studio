@@ -8,8 +8,16 @@ const NAV = [
   { id: 'settings', label: 'Sozlamalar', href: '#sozlamalar', icon: 'gear' },
 ];
 
+export const LOGO_SVG = `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5dffa8"/><stop offset="1" stop-color="#12b85c"/></linearGradient></defs>
+<rect x="5" y="9" width="54" height="46" rx="13" fill="#0b0e24" transform="translate(3 3)"/>
+<rect x="5" y="9" width="54" height="46" rx="13" fill="url(#lg1)" stroke="#0b0e24" stroke-width="4"/>
+<path d="M12 9v46M52 9v46" stroke="#0b0e24" stroke-opacity=".28" stroke-width="3" stroke-dasharray="5 6"/>
+<path d="M26 21v22l19-11z" fill="#0b0e24"/>
+<path d="M51 3l2.4 6 6 2.4-6 2.4L51 20l-2.4-6.2-6-2.4 6-2.4z" fill="#ffd23f" stroke="#0b0e24" stroke-width="2.4" stroke-linejoin="round"/></svg>`;
+
 export function brandMark() {
-  return h('span', { class: 'mark', html: '<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>' });
+  return h('span', { class: 'mark', html: LOGO_SVG });
 }
 
 export function shell(active, content) {
