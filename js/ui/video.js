@@ -26,6 +26,7 @@ export function videoPanel(m, p) {
     [['1080', 'Full HD (1080p)'], ['720', 'HD (720p, tezroq va yengil)']].map(([v, l]) => h('option', { value: v, selected: (p.vid.quality || '1080') === v }, l)));
   const subs = h('input', { type: 'checkbox', checked: p.vid.subs !== false, onchange: (e) => { p.vid.subs = e.target.checked; saveProject(p); } });
   const think = h('input', { type: 'range', min: 30, max: 85, step: 5, value: p.vid.thinkPct ?? 60, 'aria-label': 'Fikrlash ulushi', onchange: (e) => { p.vid.thinkPct = +e.target.value; saveProject(p); thinkLbl.textContent = `${e.target.value}%`; } });
+  const human = h('input', { type: 'checkbox', checked: p.vid.human !== false, onchange: (e) => { p.vid.human = e.target.checked; saveProject(p); } });
   const thinkLbl = h('span', { class: 'muted small' }, `${p.vid.thinkPct ?? 60}%`);
 
   const prepBtn = h('button', { class: 'btn primary', type: 'button', onclick: () => doPrepare(true) }, icon('play', 18), 'Ko\'rib chiqish');
@@ -109,6 +110,7 @@ export function videoPanel(m, p) {
     h('div', { class: 'row' },
       h('div', { class: 'field' }, h('label', {}, 'Sifat'), q),
       r === 'stickman' ? h('label', { class: 'switch' }, subs, h('span', { class: 'track' }), h('span', {}, 'Subtitr (matn pastda)')) : null,
+      r === 'monster' ? h('label', { class: 'switch' }, human, h('span', { class: 'track' }), h('span', {}, 'Inson siluetini ko\'rsatish (1.75 m, masshtab uchun)')) : null,
       r === 'quiz' ? h('div', { class: 'field' }, h('label', {}, 'Fikrlash vaqti ulushi'), h('div', { class: 'send-row' }, think, thinkLbl)) : null
     ),
     h('div', { class: 'send-row' }, prepBtn, recBtn),

@@ -42,7 +42,7 @@ export async function prepare(m, p, { quality = '1080', subs = true, onProgress 
     m, p, data: p.data, items, img, aud, keys, W, H, plan, opt, ids,
     accent: m.accent || '#1fe27a', lang: p.language || 'uz', T: tr(p.language || 'uz'),
     grid: gridOf(m, p.options), correct: p.vid?.correct || {}, subs, thinkPct: p.vid?.thinkPct ?? 60,
-    flags: {}, sideImg: {},
+    flags: {}, sideImg: {}, human: p.vid?.human !== false,
   };
   if (r === 'comparison' && ids.shablon === 'pillars') {
     for (const it of items) { const k = String(it.kod || '').toLowerCase(); if (k && !(k in ctx.flags)) ctx.flags[k] = await flagImage(k); }
